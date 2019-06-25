@@ -1,6 +1,4 @@
 <?php
-include_once 'controllers/UsuariosController.php';
-//Controlador de entrada
-$usuarioController = new UsuariosController();
-
+include_once 'config/Router.php';
+$router = new Router();
 ?>

@@ -11,6 +11,10 @@ class Usuarios extends Model
     parent::__construct();
     echo "Modelo de Usuarios <br />";
   }
+
+  function guardar(){
+    echo "Guardando <br />";
+  }
 }
 
 ?>

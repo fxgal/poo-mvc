@@ -12,9 +12,14 @@ class UsuariosController extends Controller
     //Ejecución de controlador padre
     parent::__construct();
     //Código propio
-    echo "Controlador de Usuarios <br />";
+    echo "Constructor Controlador de Usuarios <br />";
     //Construcción de un modelo
-    $usuario = new Usuarios();
+  }
+
+  function index(){
+    echo "Ejecutando acción index <br />";
+    // $usuario = new Usuarios();
+    // require_once('views/usuarios/index.php');
   }
 }
 
