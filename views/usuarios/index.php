@@ -5,6 +5,7 @@
     <th>Nombre de Usuario</th>
     <th>Clave</th>
     <th>Acceso</th>
+    <th>Acciones</th>
   </tr>
 <?php
 while ($usuario = $usuarios->fetch_object()) {
@@ -14,6 +15,10 @@ while ($usuario = $usuarios->fetch_object()) {
       <td><?= $usuario->username ?></td>
       <td><?= $usuario->password ?></td>
       <td><?= $usuario->acceso ?></td>
+      <td>
+        <a href="<?= URL_BASE ?>url=usuarios/ver&id=<?= $usuario->id ?>">Ver</a>
+        <a href="<?= URL_BASE ?>url=usuarios/editar">Editar</a>
+      </td>
     </tr>
     <?php
 }

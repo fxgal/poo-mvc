@@ -32,6 +32,7 @@ class Usuarios extends Model
     public function getUsuarioById($id)
     {
         $sql = "SELECT * FROM usuarios WHERE id=$id";
-        return Database::query($sql);
+        $usuario = Database::query($sql);
+        return $usuario->fetch_object();
     }
 }

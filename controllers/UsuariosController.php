@@ -36,4 +36,12 @@ class UsuariosController extends Controller
         $result = $usuariosModel->save();
         header("Location: ".URL_BASE."url=usuarios/index");
     }
+
+    public function ver()
+    {
+        $id = $_GET['id'];
+        $usuariosModel = new Usuarios();
+        $usuario = $usuariosModel->getUsuarioById($id);
+        require_once('views/usuarios/ver.php');
+    }
 }
