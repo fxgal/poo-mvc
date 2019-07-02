@@ -1,4 +1,5 @@
 <?php
+include_once "config/constantes.php";
 include_once "Controller.php";
 include_once "models/Usuarios.php";
 /**
@@ -11,25 +12,28 @@ class UsuariosController extends Controller
         //Ejecución de controlador padre
         parent::__construct();
         //Código propio
-        echo "Constructor Controlador de Usuarios <br />";
+        // echo "Constructor Controlador de Usuarios <br />";
         //Construcción de un modelo
     }
 
     public function index()
     {
-        echo "Ejecutando acción index <br />";
-        // $usuariosModel = new Usuarios();
-        // $usuarios = $usuariosModel->getUsuarios();
-        // var_dump($usuarios);
-        // require_once('views/usuarios/index.php');
+        $usuariosModel = new Usuarios();
+        $usuarios = $usuariosModel->getUsuarios();
+        require_once('views/usuarios/index.php');
+    }
+
+    public function agregar()
+    {
+        require_once('views/usuarios/agregar.php');
     }
 
     public function save()
     {
-        echo "<br />Ejecutando save";
-        $username = "juan";
-        $password = "54651";
+        $username = $_POST['username'];
+        $password = $_POST['password'];
         $usuariosModel = new Usuarios($username, $password);
         $result = $usuariosModel->save();
+        header("Location: ".URL_BASE."url=usuarios/index");
     }
 }

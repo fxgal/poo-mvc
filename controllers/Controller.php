@@ -4,11 +4,8 @@
  */
 class Controller
 {
-
-  function __construct()
-  {
-    echo "Controlador base <br />";
-  }
+    public function __construct()
+    {
+        // echo "Controlador base <br />";
+    }
 }
-
-?>
