@@ -1,15 +1,17 @@
 <?php
-
+include_once 'config/Database.php';
 /**
  * Modelo Base
  */
-class  Model
+class Model
 {
-  //Constructor
-  function __construct()
-  {
-    echo "Modelo base <br />";
-  }
-}
+    //Constructor
+    public function __construct()
+    {
+    }
 
-?>
+    public function query($sql)
+    {
+        return Database::query($sql);
+    }
+}
