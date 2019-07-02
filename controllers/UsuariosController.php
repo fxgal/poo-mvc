@@ -28,11 +28,24 @@ class UsuariosController extends Controller
         require_once('views/usuarios/agregar.php');
     }
 
+    public function editar()
+    {
+        $id = $_GET['id'];
+        $usuariosModel = new Usuarios();
+        $usuario = $usuariosModel->getUsuarioById($id);
+        require_once('views/usuarios/editar.php');
+    }
+
     public function save()
     {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $usuariosModel = new Usuarios($username, $password);
+        if (!$_POST['id']) {
+            $usuariosModel = new Usuarios(null, $username, $password);
+        } else {
+            $id = $_POST['id'];
+            $usuariosModel = new Usuarios($id, $username, $password);
+        }
         $result = $usuariosModel->save();
         header("Location: ".URL_BASE."url=usuarios/index");
     }
@@ -43,5 +56,13 @@ class UsuariosController extends Controller
         $usuariosModel = new Usuarios();
         $usuario = $usuariosModel->getUsuarioById($id);
         require_once('views/usuarios/ver.php');
+    }
+
+    public function eliminar()
+    {
+        $id = $_GET['id'];
+        $usuariosModel = new Usuarios();
+        $usuario = $usuariosModel->eliminar($id);
+        header("Location: ".URL_BASE."url=usuarios/index");
     }
 }

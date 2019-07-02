@@ -17,7 +17,8 @@ while ($usuario = $usuarios->fetch_object()) {
       <td><?= $usuario->acceso ?></td>
       <td>
         <a href="<?= URL_BASE ?>url=usuarios/ver&id=<?= $usuario->id ?>">Ver</a>
-        <a href="<?= URL_BASE ?>url=usuarios/editar">Editar</a>
+        <a href="<?= URL_BASE ?>url=usuarios/editar&id=<?= $usuario->id ?>">Editar</a>
+        <a href="<?= URL_BASE ?>url=usuarios/eliminar&id=<?= $usuario->id ?>">Eliminar</a>
       </td>
     </tr>
     <?php

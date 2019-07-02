@@ -5,27 +5,32 @@ include_once "Model.php";
  */
 class Usuarios extends Model
 {
+    private $id;
     private $username;
     private $password;
 
-    public function __construct($username = null, $password = null)
+    public function __construct($id = null, $username = null, $password = null)
     {
         parent::__construct();
         // echo "Modelo de Usuarios <br />";
+        $this->id = $id;
         $this->username = $username;
         $this->password = $password;
     }
 
     public function save()
     {
-        $sql = "INSERT INTO usuarios (username, password, acceso) VALUES('$this->username','$this->password', NOW())";
-        // var_dump($sql);
+        if (!isset($this->id)) {
+            $sql = "INSERT INTO usuarios (username, password, acceso) VALUES('$this->username','$this->password', NOW())";
+        } else {
+            $sql = "UPDATE `usuarios` SET `username`='$this->username',`password`='$this->password' WHERE id=$this->id";
+        }
         return Database::query($sql);
     }
 
     public function getUsuarios()
     {
-        $sql = "SELECT * FROM usuarios";
+        $sql = "SELECT * FROM usuarios ORDER BY username ASC";
         return Database::query($sql);
     }
 
@@ -34,5 +39,11 @@ class Usuarios extends Model
         $sql = "SELECT * FROM usuarios WHERE id=$id";
         $usuario = Database::query($sql);
         return $usuario->fetch_object();
+    }
+
+    public function eliminar($id)
+    {
+        $sql = "DELETE FROM usuarios WHERE id=$id";
+        return Database::query($sql);
     }
 }
