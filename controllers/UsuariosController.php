@@ -65,4 +65,26 @@ class UsuariosController extends Controller
         $usuario = $usuariosModel->eliminar($id);
         header("Location: ".URL_BASE."url=usuarios/index");
     }
+
+    public function login()
+    {
+        if (!empty($_POST)) {
+            extract($_POST);
+            $usuariosModel = new Usuarios();
+            $usuario = $usuariosModel->getUsuarioLogin($username, $password);
+            if ($usuario!=null) {
+                $_SESSION['usuario'] = $usuario;
+                header("Location: ".URL_BASE."url=usuarios/index");
+                return 0;
+            }
+            header("Location: ".URL_BASE."url=usuarios/login");
+        }
+        require_once('views/usuarios/login.php');
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        header("Location: ".URL_BASE."url=usuarios/login");
+    }
 }

@@ -1,4 +1,5 @@
 <a href="<?= URL_BASE ?>url=usuarios/agregar">Nuevo Usuario</a>
+<a href="<?= URL_BASE ?>url=usuarios/logout">Salir</a>
 <table>
   <tr>
     <th>Id</th>

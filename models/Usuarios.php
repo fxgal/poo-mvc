@@ -46,4 +46,11 @@ class Usuarios extends Model
         $sql = "DELETE FROM usuarios WHERE id=$id";
         return Database::query($sql);
     }
+
+    public function getUsuarioLogin($username, $password)
+    {
+        $sql = "SELECT * FROM usuarios WHERE username='$username' AND password='$password'";
+        $usuario = Database::query($sql);
+        return $usuario->fetch_object();
+    }
 }
